@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "451766970089",
+    "firebase_url": "https://ourprint.firebaseio.com",
+    "project_id": "ourprint",
+    "storage_bucket": "ourprint.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451766970089:android:a41f0c10e90d8c9811b278",
+        "android_client_info": {
+          "package_name": "com.ourprint.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451766970089-2e5mmh3lmlisve2fadc4kpbsvf50jfti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ourprint.app",
+            "certificate_hash": "209aea60714a5570b0306ec8ac12d960c5bd6b65"
+          }
+        },
+        {
+          "client_id": "451766970089-rlpqsf1qc7h54icdk20tem0vkaqv34qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkiVdRHrBA83x7qXcGwCXaQOMTavXVBiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451766970089-rlpqsf1qc7h54icdk20tem0vkaqv34qu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
