@@ -22,7 +22,7 @@ class BookingConfirmed extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 iconSize: 28,
-                onPressed: () =>HomePage.openAndRemoveUntil(context),
+                onPressed: () => HomePage.openAndRemoveUntil(context),
               ),
             ),
             Center(

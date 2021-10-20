@@ -132,7 +132,7 @@ class ViewProfileState extends State<ViewProfile> {
                       return Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
-                          border: Border.all(color: Colors.white54,width: 0.5),
+                          border: Border.all(color: Colors.white54, width: 0.5),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(

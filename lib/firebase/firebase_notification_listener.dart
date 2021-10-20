@@ -40,7 +40,7 @@ class FirebaseNotificationListener {
     );
   }
 
- static Future sendNotification() async {
+  static Future sendNotification() async {
     print('sending notification...');
     print('FCM is ');
     var fcm = await FirebaseTokenSetup.getToken();

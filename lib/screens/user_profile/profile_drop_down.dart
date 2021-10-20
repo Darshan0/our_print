@@ -90,8 +90,8 @@ class _ProfileDropDownState extends State<ProfileDropDown> {
                     ),
                     decoration: InputDecoration(hintText: 'Tap to edit'),
                     focusNode: focusNode,
-                    onChanged: (val){
-                      otherTextField=val;
+                    onChanged: (val) {
+                      otherTextField = val;
                     },
                     onFieldSubmitted: (val) {
 //                    updateProfile(context, {widget.keY: val});

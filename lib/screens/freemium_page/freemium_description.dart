@@ -45,7 +45,7 @@ class _FreemiumDescriptionState extends State<FreemiumDescription> {
           if (snap.hasError)
             return Material(child: CustomErrorWidget(error: snap.error));
           if (!snap.hasData) return Material(child: LoadingWidget());
-          var monthsLen = (DateTime.now().month-userCreatedAt.month ) + 1;
+          var monthsLen = (DateTime.now().month - userCreatedAt.month) + 1;
 
           return Scaffold(
             appBar: AppBar(),
@@ -120,10 +120,13 @@ class _FreemiumDescriptionState extends State<FreemiumDescription> {
                       var freemiumDate = DateTime.parse(
                           '${userCreatedAt.year}-${(userCreatedAt.month + index).toString().padLeft(2, '0')}-${userCreatedAt.day}');
 
-                      var orderDate = snap.data.firstWhere((data) {
-                        return data.createdAt.month == freemiumDate.month &&
-                            data.createdAt.year == freemiumDate.year;
-                      }, orElse: () => null)?.createdAt?.toLocal();
+                      var orderDate = snap.data
+                          .firstWhere((data) {
+                            return data.createdAt.month == freemiumDate.month &&
+                                data.createdAt.year == freemiumDate.year;
+                          }, orElse: () => null)
+                          ?.createdAt
+                          ?.toLocal();
                       if (orderDate != null) position = index;
 
                       return Column(

@@ -61,9 +61,7 @@ class ContactUs extends StatelessWidget {
                     final Uri _emailLaunchUri = Uri(
                         scheme: 'mailto',
                         path: 'ask@ourprint.in',
-                        queryParameters: {
-                        }
-                    );
+                        queryParameters: {});
 
                     launch(_emailLaunchUri.toString());
                   },

@@ -23,5 +23,4 @@ class Api {
   static const orderFiles = '/api/order-files/';
   static const haveSubscription = '/api/have-subscription/';
   static const userTotalPrints = '/api/user-total-prints/';
-
 }

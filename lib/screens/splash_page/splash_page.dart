@@ -50,7 +50,10 @@ class _SplashPageState extends State<SplashPage> {
                           androidAppId: "com.ourprint.app",
                           iOSAppId: "com.ourprint.app");
                     },
-                    child: Text('Update', style: TextStyle(color: Theme.of(context).accentColor),))
+                    child: Text(
+                      'Update',
+                      style: TextStyle(color: Theme.of(context).accentColor),
+                    ))
               ],
             ),
           );

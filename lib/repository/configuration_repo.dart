@@ -9,7 +9,7 @@ class ConfigurationsRepo {
     return response.map((data) => ConfigurationModel.fromMap(data)).toList();
   }
 
-  static Future<DependentConfigPrice>getDependentConfigPrice() async {
+  static Future<DependentConfigPrice> getDependentConfigPrice() async {
     var response = await apiClient.get(Api.getDependentConfigPrice);
     return DependentConfigPrice.fromMap(response);
   }

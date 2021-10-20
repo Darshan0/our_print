@@ -32,7 +32,7 @@ class ImageFromNet extends StatelessWidget {
         width: width,
         height: height,
         child: Center(
-          child: Icon(Icons.broken_image,color: Colors.grey),
+          child: Icon(Icons.broken_image, color: Colors.grey),
         ),
       );
     }
@@ -59,7 +59,7 @@ class ImageFromNet extends StatelessWidget {
           width: width,
           height: height,
           child: Center(
-            child: Icon(Icons.broken_image,color: Colors.grey),
+            child: Icon(Icons.broken_image, color: Colors.grey),
           ),
         );
       },

@@ -1,8 +1,7 @@
-
 import 'dio_client.dart';
 
 class ApiClient {
-  Future get(String path, {query,bool isAuth=true}) async {}
+  Future get(String path, {query, bool isAuth = true}) async {}
 
   Future post(String path, body, {query}) async {}
 
@@ -11,7 +10,6 @@ class ApiClient {
   Future patch(String path, body, {query}) async {}
 
   Future delete(String path, {body, query}) async {}
-
 }
 
 final apiClient = DioClient();

@@ -1020,5 +1020,5 @@ var cities = [
   "Yeola",
   "Yercaud"
 ];
-class Cities {
-}
+
+class Cities {}

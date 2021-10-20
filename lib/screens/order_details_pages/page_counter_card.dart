@@ -27,7 +27,7 @@ class PageCounterCard extends StatelessWidget {
                       style: textTheme.caption,
                     ),
                     InkWell(
-                      onTap: () =>Navigator.pop(context),
+                      onTap: () => Navigator.pop(context),
                       child: Icon(Icons.close, size: 16),
                     )
                   ],
@@ -40,7 +40,7 @@ class PageCounterCard extends StatelessWidget {
                     final name = subsBloc.getPageCounter.keys.toList()[i];
                     final count = subsBloc.getPageCounter.values.toList()[i];
                     return Padding(
-                      padding: const EdgeInsets.only(top:16.0),
+                      padding: const EdgeInsets.only(top: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

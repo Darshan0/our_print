@@ -25,7 +25,7 @@ class EmptyWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal:24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Image.asset(Images.emptyList),
             ),
             SizedBox(height: 30),

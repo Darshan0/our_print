@@ -28,8 +28,7 @@ class FreemiumDiscount extends StatelessWidget {
               .price;
           var discount =
               model.pdfPageCount <= 100 ? printingCharges : (100 * bwPrice);
-          if(onCalculated!=null)
-          onCalculated(discount);
+          if (onCalculated != null) onCalculated(discount);
           return Row(
             mainAxisAlignment: MainAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,

@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-ConfigurationModel configurationModelFromJson(String str) => ConfigurationModel.fromMap(json.decode(str));
+ConfigurationModel configurationModelFromJson(String str) =>
+    ConfigurationModel.fromMap(json.decode(str));
 
-String configurationModelToJson(ConfigurationModel data) => json.encode(data.toMap());
+String configurationModelToJson(ConfigurationModel data) =>
+    json.encode(data.toMap());
 
 class ConfigurationModel {
   int id;
@@ -17,33 +19,33 @@ class ConfigurationModel {
   double strikePrice;
   int perPageCount;
 
-  ConfigurationModel({
-    this.id,
-    this.title,
-    this.type,
-    this.price,
-    this.priceType,
-    this.strikePrice,
-    this.perPageCount
-  });
+  ConfigurationModel(
+      {this.id,
+      this.title,
+      this.type,
+      this.price,
+      this.priceType,
+      this.strikePrice,
+      this.perPageCount});
 
-  factory ConfigurationModel.fromMap(Map<String, dynamic> json) => ConfigurationModel(
-    id: json["id"],
-    title: json["title"],
-    type: json["type"],
-    price: json["price"].toDouble(),
-    priceType: json["price_type"],
-    strikePrice: json["strike_price"],
-    perPageCount: json["per_page_count"],
-  );
+  factory ConfigurationModel.fromMap(Map<String, dynamic> json) =>
+      ConfigurationModel(
+        id: json["id"],
+        title: json["title"],
+        type: json["type"],
+        price: json["price"].toDouble(),
+        priceType: json["price_type"],
+        strikePrice: json["strike_price"],
+        perPageCount: json["per_page_count"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "title": title,
-    "type": type,
-    "price": price,
-    "price_type": priceType,
-    "strike_price": strikePrice,
-    "per_page_count": perPageCount,
-  };
+        "id": id,
+        "title": title,
+        "type": type,
+        "price": price,
+        "price_type": priceType,
+        "strike_price": strikePrice,
+        "per_page_count": perPageCount,
+      };
 }

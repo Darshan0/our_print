@@ -88,16 +88,16 @@ class _BindingConfigState extends State<BindingConfig> {
                                   color: theme.accentColor,
                                 ),
                               ),
-                              if(config.strikePrice>0)
-                              Text(
-                                '₹ ${config.strikePrice}/${this ^ config.perPageCount}page  ',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  decoration: TextDecoration.lineThrough,
-                                  fontWeight: FontWeight.w500,
-                                  color: theme.accentColor,
+                              if (config.strikePrice > 0)
+                                Text(
+                                  '₹ ${config.strikePrice}/${this ^ config.perPageCount}page  ',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    decoration: TextDecoration.lineThrough,
+                                    fontWeight: FontWeight.w500,
+                                    color: theme.accentColor,
+                                  ),
                                 ),
-                              ),
                             ],
                           ),
                         ]

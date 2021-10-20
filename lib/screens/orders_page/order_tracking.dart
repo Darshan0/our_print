@@ -103,7 +103,7 @@ class _OrderTrackingState extends State<OrderTracking> {
                           child: Text(
                             '${widget.model.trackUrl}',
                             style:
-                            textTheme.caption.copyWith(color: Colors.blue),
+                                textTheme.caption.copyWith(color: Colors.blue),
                           ),
                         ),
                       )

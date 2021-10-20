@@ -71,12 +71,14 @@ class _PageConfigState extends State<PageConfig> {
                               config.title,
                               style: textTheme.bodyText1,
                             ),
-                            if (pdfBloc.orderType != OrderType.SUBSCRIPTION) ...[
+                            if (pdfBloc.orderType !=
+                                OrderType.SUBSCRIPTION) ...[
                               SizedBox(height: 4),
                               if (selectedPrintConfig.title == Strings.bw)
                                 if (config.title == Strings.oneSided)
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         '₹ ${pdfBloc.dependentConfigPrice.blackWhiteSingleSide}'
@@ -93,7 +95,8 @@ class _PageConfigState extends State<PageConfig> {
                                           '/${this ^ config.perPageCount}page',
                                           style: TextStyle(
                                             fontSize: 12,
-                                            decoration: TextDecoration.lineThrough,
+                                            decoration:
+                                                TextDecoration.lineThrough,
                                             fontWeight: FontWeight.w500,
                                             color: theme.accentColor,
                                           ),
@@ -103,7 +106,8 @@ class _PageConfigState extends State<PageConfig> {
                                   )
                                 else
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         '₹ ${pdfBloc.dependentConfigPrice.blackWhiteDoubleSide}'
@@ -120,7 +124,8 @@ class _PageConfigState extends State<PageConfig> {
                                           '/${this ^ config.perPageCount}page  ',
                                           style: TextStyle(
                                             fontSize: 12,
-                                            decoration: TextDecoration.lineThrough,
+                                            decoration:
+                                                TextDecoration.lineThrough,
                                             fontWeight: FontWeight.w500,
                                             color: theme.accentColor,
                                           ),
@@ -128,11 +133,14 @@ class _PageConfigState extends State<PageConfig> {
                                       ),
                                     ],
                                   )
-                              else if (selectedPrintConfig.title == Strings.color ||
-                                  selectedPrintConfig.title == Strings.multiColor)
+                              else if (selectedPrintConfig.title ==
+                                      Strings.color ||
+                                  selectedPrintConfig.title ==
+                                      Strings.multiColor)
                                 if (config.title == Strings.oneSided)
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         '₹ ${pdfBloc.dependentConfigPrice.colorSingleSide}'
@@ -149,7 +157,8 @@ class _PageConfigState extends State<PageConfig> {
                                           '/${this ^ config.perPageCount}page  ',
                                           style: TextStyle(
                                             fontSize: 12,
-                                            decoration: TextDecoration.lineThrough,
+                                            decoration:
+                                                TextDecoration.lineThrough,
                                             fontWeight: FontWeight.w500,
                                             color: theme.accentColor,
                                           ),
@@ -159,7 +168,8 @@ class _PageConfigState extends State<PageConfig> {
                                   )
                                 else
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         '₹ ${pdfBloc.dependentConfigPrice.colorDoubleSide}'
@@ -176,7 +186,8 @@ class _PageConfigState extends State<PageConfig> {
                                           '/${this ^ config.perPageCount}page  ',
                                           style: TextStyle(
                                             fontSize: 12,
-                                            decoration: TextDecoration.lineThrough,
+                                            decoration:
+                                                TextDecoration.lineThrough,
                                             fontWeight: FontWeight.w500,
                                             color: theme.accentColor,
                                           ),

@@ -31,8 +31,8 @@ class UserProfile extends StatefulWidget {
     'Others'
   ];
 
-  static final List<String> collegeYears = ['NA','1', '2', '3', '4', '5'];
-  static final List<String> collegeSem = ['NA','1', '2'];
+  static final List<String> collegeYears = ['NA', '1', '2', '3', '4', '5'];
+  static final List<String> collegeSem = ['NA', '1', '2'];
 
   static open(context) => Navigator.push(
       context, MaterialPageRoute(builder: (context) => UserProfile()));

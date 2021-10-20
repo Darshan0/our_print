@@ -60,6 +60,7 @@ dependencies:
   regexpattern: ^0.2.3
 #  sms_otp_auto_verify: ^1.2.2
   sms_autofill: ^1.2.6
+  qr_code_scanner: ^0.5.2
 
 
 
