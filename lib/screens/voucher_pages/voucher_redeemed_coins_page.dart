@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ourprint/screens/voucher_pages/coins_addition.dart';
 
 class VoucherRedeemedCoinsPage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class VoucherRedeemedCoinsPageState extends State<VoucherRedeemedCoinsPage> {
         body: Center(
           child: Container(
             padding: EdgeInsets.only(
-              top: 150,
+              top: 120,
               left: 20,
               right: 20,
             ),
@@ -24,21 +25,10 @@ class VoucherRedeemedCoinsPageState extends State<VoucherRedeemedCoinsPage> {
               children: [
                 Center(
                   child: Container(
-                    width: 250,
-                    height: 250,
-                    decoration: new BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.black38, width: 2.0),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "100",
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: Color(0xFF53905F),
-                        ),
-                      ),
+                    width: 350,
+                    height: 350,
+                    child: CoinsAddition(
+                      coinValue: 100,
                     ),
                   ),
                 ),

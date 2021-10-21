@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ourprint/screens/voucher_pages/voucher_card.dart';
+
+import 'coin.dart';
 
 class VoucherRedeemOffers extends StatefulWidget {
   @override
@@ -12,9 +15,18 @@ class VoucherRedeemOffersState extends State<VoucherRedeemOffers> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(100),
+          child: Container(
+            padding: EdgeInsets.only(right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [Coin(100, 40)],
+            ),
+          ),
+        ),
         body: Container(
           padding: EdgeInsets.only(
-            top: 80,
             right: 20,
             left: 20,
           ),
@@ -32,13 +44,15 @@ class VoucherRedeemOffersState extends State<VoucherRedeemOffers> {
                 height: 10,
               ),
               Container(
+                height: 600,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: ListView.builder(
                     itemCount: 10,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, position) {
-                      return _getOfferItem();
+                      return VoucherCard();
                     },
                   ),
                 ),
@@ -46,107 +60,6 @@ class VoucherRedeemOffersState extends State<VoucherRedeemOffers> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _getOfferItem() {
-    return Container(
-      width: double.infinity,
-      height: 150,
-      margin: EdgeInsets.only(
-        top: 10,
-        bottom: 10,
-      ),
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Stack(
-        children: [
-          FlutterLogo(),
-          Positioned(
-            top: 70,
-            right: 0,
-            left: 0,
-            bottom: 0,
-            child: Container(
-              height: 90,
-              decoration: new BoxDecoration(
-                color: Colors.black54,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "20% off on clothes",
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Center(
-                              child: Container(
-                                width: 20,
-                                height: 20,
-                                decoration: new BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: Colors.black38, width: 2.0),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "",
-                                    style: TextStyle(
-                                      fontSize: 40,
-                                      color: Color(0xFF53905F),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "200",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "Redeem Now",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

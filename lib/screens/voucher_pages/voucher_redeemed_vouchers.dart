@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ourprint/screens/voucher_pages/redeemed_voucher_card.dart';
 
 class RedeemedVouchers extends StatefulWidget {
   @override
@@ -38,7 +39,7 @@ class RedeemedVouchersState extends State<RedeemedVouchers> {
                     itemCount: 10,
                     shrinkWrap: true,
                     itemBuilder: (context, position) {
-                      return _getOfferItem();
+                      return RedeemedVoucherCard();
                     },
                   ),
                 ),
@@ -46,73 +47,6 @@ class RedeemedVouchersState extends State<RedeemedVouchers> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _getOfferItem() {
-    return Container(
-      width: double.infinity,
-      height: 150,
-      margin: EdgeInsets.only(
-        top: 10,
-        bottom: 10,
-      ),
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Stack(
-        children: [
-          FlutterLogo(),
-          Positioned(
-            top: 70,
-            right: 0,
-            left: 0,
-            bottom: 0,
-            child: Container(
-              height: 90,
-              decoration: new BoxDecoration(
-                color: Colors.black54,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Voucher Code",
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "CJ-HQ-123-HYU",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
