@@ -50,7 +50,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SimpleHiddenDrawer(
-      menu: DrawerMenu(userImage: userImage, userName: userName),
+      menu: DrawerMenu(
+        userImage: userImage,
+        userName: userName,
+      ),
       screenSelectedBuilder: (position, controller) {
         return Stack(
           children: <Widget>[

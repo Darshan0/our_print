@@ -11,14 +11,14 @@ class DioClient implements ApiClient {
   DioClient() {
     dio = Dio();
     dio.options = BaseOptions(
-      // baseUrl: 'https://api.ourprint.in',
+      baseUrl: 'http://13.232.126.123',
       //  baseUrl: 'http://192.168.43.90:1234',
       // baseUrl: 'http://7t6.in:8383',
 //        baseUrl: 'http://10.0.0.101:1234',
 //      connectTimeout: 10000,
 //      receiveTimeout: 10000,
       //don't remove this ternary operator
-      baseUrl: kReleaseMode ? 'https://api.ourprint.in' : 'http://7t6.in:8383',
+      // baseUrl: kReleaseMode ? 'https://api.ourprint.in' : 'http://13.232.213.27/api',
     );
     dio.interceptors.add(
       PrettyDioLogger(requestBody: true, maxWidth: 120, error: true),
@@ -28,7 +28,6 @@ class DioClient implements ApiClient {
   Future<Options> getOptions({bool isAuth = true, bool isFile = false}) async {
     Map<String, dynamic> headers = {'Accept': 'application/json'};
     var token = await Prefs.getToken();
-    print(token);
     if (token != null && isAuth) {
       headers['Authorization'] = token;
     }

@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:ourprint/model/voucher_model/voucher_model.dart';
+import 'package:ourprint/repository/voucher_repo.dart';
+import 'package:ourprint/resources/images.dart';
+import 'package:ourprint/screens/voucher_pages/user_coin_details_provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class VoucherCard extends StatelessWidget {
+  const VoucherCard({
+    this.voucherId,
+    this.voucherImageUrl,
+    this.voucherTitle,
+    this.voucherCoin,
+    this.vouchers,
+  });
+
+  final int voucherId;
+  final String voucherImageUrl;
+  final String voucherCoin;
+  final String voucherTitle;
+  final Vouchers vouchers;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,21 +35,27 @@ class VoucherCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Container(
-            width: 380,
-            height: 200,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://www.1pns.com/wp-content/uploads/2020/04/amaozn-amazon.in_.jpg'),
-                fit: BoxFit.fill,
-              ),
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(25),
-              ),
-            ),
-          ),
+          voucherImageUrl != null
+              ? Container(
+                  width: 380,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        voucherImageUrl,
+                      ),
+                      fit: BoxFit.fill,
+                    ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25),
+                    ),
+                  ),
+                )
+              : Container(
+                  width: 380,
+                  height: 200,
+                ),
           Positioned(
             top: 60,
             right: 0,
@@ -54,7 +78,7 @@ class VoucherCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "20% off on clothes",
+                          voucherTitle,
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
                         Row(
@@ -69,24 +93,31 @@ class VoucherCard extends StatelessWidget {
                                   shape: BoxShape.circle,
                                 ),
                                 child: Material(
-                                  shape: CircleBorder(),
+                                  shape: CircleBorder(
+                                    side: BorderSide(
+                                      color: Colors.lightGreen,
+                                      width: 2,
+                                    ),
+                                  ),
                                   elevation: 10,
-                                  shadowColor: Colors.yellowAccent[400],
-                                  color: Colors.amber[800],
-                                  child: Icon(
-                                    Icons.monetization_on,
-                                    size: 20,
-                                    color: Colors.yellowAccent[400],
+                                  shadowColor: Color(0xFF53905F),
+                                  color: Colors.green[700],
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: Image.asset(
+                                      Images.rupee,
+                                      color: Colors.lightGreen,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              height: 20,
+                              width: 10,
                             ),
                             Center(
                               child: Text(
-                                "200",
+                                voucherCoin,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 15),
                               ),
@@ -117,7 +148,7 @@ class VoucherCard extends StatelessWidget {
                                         color: Colors.white, fontSize: 20),
                                   ),
                                   onPressed: () => Navigator.pop(context),
-                                  color: Color.fromRGBO(0, 179, 134, 1.0),
+                                  color: Colors.green[700],
                                 ),
                                 DialogButton(
                                   child: Text(
@@ -125,32 +156,112 @@ class VoucherCard extends StatelessWidget {
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20),
                                   ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Alert(
+                                  onPressed: () async {
+                                    final coinBalance =
+                                        await UserCoinDetailsProvider.instance
+                                            .getUserCoinDetails();
+                                    if ((coinBalance -
+                                            int.parse(voucherCoin)) <=
+                                        0) {
+                                      Alert(
                                         context: context,
-                                        title: 'Succesfully Redeemed',
+                                        title: 'Low coin balance',
                                         desc:
-                                            'You will see this in your Redeemed Vouchers',
+                                            'Sorry you dont have enough coins to redeem this voucher.',
                                         buttons: [
                                           DialogButton(
                                             child: Text(
-                                              "Cancel",
+                                              "Ok",
                                               style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20),
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                              ),
                                             ),
                                             onPressed: () =>
                                                 Navigator.pop(context),
                                             color: Color.fromRGBO(
-                                                83, 144, 95, 1.0),
+                                              83,
+                                              144,
+                                              95,
+                                              1.0,
+                                            ),
                                           ),
-                                        ]).show();
+                                        ],
+                                      ).show();
+                                      ;
+                                    } else {
+                                      final Map response =
+                                          await VoucherRepo.purchaseVoucher(
+                                        voucherId,
+                                      );
+                                      if (response != null) {
+                                        Navigator.pop(context);
+                                        if (response.containsKey("success")) {
+                                          Alert(
+                                            context: context,
+                                            title: 'Succesfully Redeemed',
+                                            desc:
+                                                'You will see this in your Redeemed Vouchers',
+                                            buttons: [
+                                              DialogButton(
+                                                child: Text(
+                                                  "Ok",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                                onPressed: () =>
+                                                    Navigator.pop(context),
+                                                color: Color.fromRGBO(
+                                                  83,
+                                                  144,
+                                                  95,
+                                                  1.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ).show();
+                                        } else {
+                                          Alert(
+                                            context: context,
+                                            title: 'Failed to Redeemed',
+                                            desc: 'Voucher already redeemed.',
+                                            buttons: [
+                                              DialogButton(
+                                                child: Text(
+                                                  "Ok",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                                onPressed: () =>
+                                                    Navigator.pop(context),
+                                                color: Color.fromRGBO(
+                                                  83,
+                                                  144,
+                                                  95,
+                                                  1.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ).show();
+                                        }
+                                      }
+                                    }
                                   },
-                                  gradient: LinearGradient(colors: [
-                                    Color.fromRGBO(116, 116, 191, 1.0),
-                                    Color.fromRGBO(52, 138, 199, 1.0)
-                                  ]),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color.fromRGBO(
+                                        83,
+                                        144,
+                                        95,
+                                        1.0,
+                                      ),
+                                      Colors.lightGreen
+                                    ],
+                                  ),
                                 )
                               ],
                             ).show();

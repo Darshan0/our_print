@@ -9,6 +9,7 @@ class ErrorHandling {
   static parseError(BuildContext context, error) {
     try {
       if (error is DioError) {
+        print(error.message);
         switch (error.type) {
           case DioErrorType.RESPONSE:
             if (error.response.statusCode == 400) {

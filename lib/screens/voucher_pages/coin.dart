@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ourprint/resources/images.dart';
 
 class Coin extends StatelessWidget {
   final int coinValue;
@@ -10,7 +11,6 @@ class Coin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Center(
           child: Container(
@@ -21,20 +21,27 @@ class Coin extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: Material(
-              shape: CircleBorder(),
+              shape: CircleBorder(
+                side: BorderSide(
+                  color: Colors.lightGreen,
+                  width: 4,
+                ),
+              ),
               elevation: 10,
-              shadowColor: Colors.yellowAccent[400],
-              color: Colors.amber[800],
-              child: Icon(
-                Icons.monetization_on,
-                size: iconSize,
-                color: Colors.yellowAccent[400],
+              shadowColor: Color(0xFF53905F),
+              color: Colors.green[700],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  Images.rupee,
+                  color: Colors.lightGreen,
+                ),
               ),
             ),
           ),
         ),
         SizedBox(
-          height: 20,
+          width: 10,
         ),
         Center(
           child: Text(

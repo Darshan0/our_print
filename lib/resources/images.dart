@@ -44,4 +44,6 @@ class Images {
   static const contact = 'assets/icons/contact.png';
   static const subscription = 'assets/icons/subscription.png';
   static const whatsapp = 'assets/icons/whatsapp.png';
+  static const vouchersIcon = 'assets/icons/voucher_menu_icon.png';
+  static const rupee = 'assets/icons/rupee.png';
 }

@@ -23,4 +23,10 @@ class Api {
   static const orderFiles = '/api/order-files/';
   static const haveSubscription = '/api/have-subscription/';
   static const userTotalPrints = '/api/user-total-prints/';
+  static const getQRCodes = '/api/get-qr-codes/';
+  static const scanQRCodes = '/api/scan-qr-code/';
+  static const getAllVouchers = '/api/get-voucher/';
+  static const getPurchasedVouchers = '/api/get-purchased-voucher/';
+  static const getUserCoinInfo = '/api/get-user-coin-info/';
+  static const purchaseVoucher = '/api/save-purchased-voucher/';
 }

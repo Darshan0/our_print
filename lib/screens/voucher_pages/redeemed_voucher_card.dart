@@ -2,6 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RedeemedVoucherCard extends StatelessWidget {
+  const RedeemedVoucherCard(
+      {this.voucherImageUrl, this.voucherTitle, this.voucherCoin});
+
+  final String voucherImageUrl;
+  final String voucherCoin;
+  final String voucherTitle;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,13 +24,15 @@ class RedeemedVoucherCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          voucherImageUrl != null ? 
           Container(
             width: 380,
             height: 200,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                    'https://www.1pns.com/wp-content/uploads/2020/04/amaozn-amazon.in_.jpg'),
+                  voucherImageUrl,
+                ),
                 fit: BoxFit.fill,
               ),
               color: Colors.white,
@@ -31,6 +40,9 @@ class RedeemedVoucherCard extends StatelessWidget {
                 Radius.circular(25),
               ),
             ),
+          ) : Container(
+            width: 380,
+            height: 200,
           ),
           Positioned(
             top: 70,
@@ -51,16 +63,16 @@ class RedeemedVoucherCard extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Voucher Code",
+                          voucherTitle,
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +80,7 @@ class RedeemedVoucherCard extends StatelessWidget {
                         GestureDetector(
                           onTap: () {},
                           child: Text(
-                            "CJ-HQ-123-HYU",
+                            "Redeemed",
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         )

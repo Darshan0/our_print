@@ -1,8 +1,9 @@
 import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:ourprint/resources/images.dart';
 
-class CoinAdditionAnimation extends StatelessWidget {
+class CoinAdditionAnimation extends StatefulWidget {
   var coinValue;
 
   // Constructor along with animation Tweens initialization
@@ -36,29 +37,34 @@ class CoinAdditionAnimation extends StatelessWidget {
 
         // Color Tweens
         endTopColor =
-            ColorTween(begin: Colors.yellow[600], end: Colors.yellow).animate(
+            ColorTween(begin: Color(0xFF53905F), end: Colors.lightGreen)
+                .animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(0.7, 1.0),
           ),
         ),
         endBottomColor =
-            ColorTween(begin: Colors.yellow[700], end: Colors.yellow).animate(
+            ColorTween(begin: Color(0xFF53905F), end: Colors.lightGreen)
+                .animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(0.7, 1.0),
           ),
         ),
-        startTopColor =
-            ColorTween(begin: Colors.yellow[600], end: Colors.yellow[900])
-                .animate(
+        startTopColor = ColorTween(
+          begin: Color(0xFF53905F),
+          end: Colors.lightGreen,
+        ).animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(0.0, 0.5, curve: Curves.bounceIn),
           ),
         ),
-        startBottomColor =
-            ColorTween(begin: Colors.yellow[700], end: Colors.yellow).animate(
+        startBottomColor = ColorTween(
+          begin: Color(0xFF53905F),
+          end: Colors.lightGreen,
+        ).animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(0.0, 0.5),
@@ -81,6 +87,11 @@ class CoinAdditionAnimation extends StatelessWidget {
 
   final AnimationController controller;
 
+  @override
+  _CoinAdditionAnimationState createState() => _CoinAdditionAnimationState();
+}
+
+class _CoinAdditionAnimationState extends State<CoinAdditionAnimation> {
   Widget _buildAnimation(BuildContext context, Widget child) {
     return Stack(
       children: [
@@ -90,15 +101,20 @@ class CoinAdditionAnimation extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                height: 170,
+                height: 130,
                 child: Transform(
                   alignment: FractionalOffset.center,
-                  transform: Matrix4.rotationY(flip.value),
+                  transform: Matrix4.rotationY(widget.flip.value),
                   child: Material(
-                    shape: CircleBorder(),
-                    elevation: elevation.value,
-                    shadowColor: Colors.yellowAccent[400],
-                    color: Colors.amber[800],
+                    shape: CircleBorder(
+                      side: BorderSide(
+                        color: Colors.lightGreen,
+                        width: 6
+                      ),
+                    ),
+                    elevation: widget.elevation.value,
+                    shadowColor: Color(0xFF53905F),
+                    color: Color(0xFF53905F),
                     child: ShaderMask(
                       blendMode: BlendMode.srcIn,
                       shaderCallback: (Rect bounds) {
@@ -106,31 +122,53 @@ class CoinAdditionAnimation extends StatelessWidget {
                           Offset(4.0, 24.0),
                           Offset(24.0, 4.0),
                           [
-                            (controller.value < 0.5)
-                                ? startBottomColor.value
-                                : endBottomColor.value,
-                            (controller.value < 0.5)
-                                ? startTopColor.value
-                                : endTopColor.value,
+                            (widget.controller.value < 0.5)
+                                ? widget.startBottomColor.value
+                                : widget.endBottomColor.value,
+                            (widget.controller.value < 0.5)
+                                ? widget.startTopColor.value
+                                : widget.endTopColor.value,
                           ],
                         );
                       },
-                      child: Icon(
-                        Icons.monetization_on,
-                        size: controller.value < 0.5 ? size.value : 80.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Image.asset(
+                          Images.rupee,
+                          color: Colors.lightGreen,
+                          height: widget.controller.value < 0.5
+                              ? widget.size.value
+                              : 100.0,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               Text(
-                '$coinValue \n Print coins',
+                '${widget.coinValue} \n Print coins',
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.visible,
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32,
-                    color: Colors.black38),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF53905F),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Will be added into your wallet.',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFF53905F),
+                ),
               )
             ],
           ),
@@ -139,11 +177,10 @@ class CoinAdditionAnimation extends StatelessWidget {
     );
   }
 
-  // Just holds Animation Builder and calls _buildAnimation
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: controller,
+      animation: widget.controller,
       builder: _buildAnimation,
     );
   }

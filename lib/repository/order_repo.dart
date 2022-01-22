@@ -52,8 +52,12 @@ class OrderRepo {
       'user': await Prefs.getUserId(),
       'exclude_status': 'incomplete',
       'is_payment_complete': 'True',
-    }) as List;
-    return response.map((data) => OrderModel.fromMap(data)).toList();
+    }) as Map;
+    var resultList = [];
+    if (response.containsKey("results")) {
+      resultList = response["results"] as List;
+    }
+    return resultList.map((data) => OrderModel.fromMap(data)).toList();
   }
 
   static Future<OrderFileModel> getOrderFile(int orderFileId) async {

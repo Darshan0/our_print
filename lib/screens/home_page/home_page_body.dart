@@ -13,6 +13,7 @@ import 'package:ourprint/screens/home_page/widgets/home_card_new.dart';
 import 'package:ourprint/screens/subscription_page/subscription_config.dart';
 import 'package:ourprint/screens/subscription_page/subscription_plans.dart';
 import 'package:ourprint/screens/user_profile/user_profile.dart';
+import 'package:ourprint/screens/voucher_pages/voucher_scan_qr_page.dart';
 import 'package:ourprint/widgets/error_widget.dart';
 import 'package:ourprint/widgets/loading_widget.dart';
 import 'package:ourprint/widgets/profile_image_from_net.dart';
@@ -272,6 +273,21 @@ class _HomePageBodyState extends State<HomePageBody> {
           ),
           SizedBox(height: 32),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.black,
+        backgroundColor: Color(0xFF53905F),
+        child: Icon(
+          Icons.qr_code_2_outlined,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            new MaterialPageRoute(
+              builder: (BuildContext buildContext) => VoucherScanQrPage(),
+            ),
+          );
+        },
       ),
     );
   }

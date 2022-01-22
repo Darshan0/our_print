@@ -4,9 +4,11 @@ import 'package:ourprint/resources/images.dart';
 import 'package:ourprint/screens/contact_us/contact_us.dart';
 import 'package:ourprint/screens/freemium_page/freemium_coming_soon.dart';
 import 'package:ourprint/screens/orders_page/all_orders.dart';
+import 'package:ourprint/screens/partners_pages/partners_page.dart';
 import 'package:ourprint/screens/subscription_page/my_subscription.dart';
 import 'package:ourprint/screens/user_profile/user_profile.dart';
 import 'package:ourprint/my_html_viewer.dart';
+import 'package:ourprint/screens/voucher_pages/voucher_menu_page.dart';
 import 'package:ourprint/widgets/profile_image_from_net.dart';
 import 'package:share/share.dart';
 
@@ -21,16 +23,6 @@ class DrawerMenu extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          iconSize: 32,
-          onPressed: () {
-            SimpleHiddenDrawerProvider.of(context).setSelectedMenuPosition(0);
-          },
-        ),
-      ),
       body: FractionallySizedBox(
         widthFactor: 0.8,
         child: Column(
@@ -98,13 +90,14 @@ class DrawerMenu extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     CardButton(
-                      text: 'Freemium',
-                      image: Images.freemiumMenuIcon,
-                      onTap: () => FreemiumComingSoon.open(context),
+                      text: 'Vouchers',
+                      image: Images.vouchersIcon,
+                      onTap: () => VoucherMenuPage.open(context),
                     ),
                     CardButton(
                       text: 'Partners',
                       image: Images.partnersIcon,
+                      onTap: () => PartnersPage.open(context),
                     ),
                     CardButton(
                       text: 'Terms',

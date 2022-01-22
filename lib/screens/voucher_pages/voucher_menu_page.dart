@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ourprint/resources/images.dart';
+import 'package:ourprint/screens/voucher_pages/user_coin_details_provider.dart';
+import 'package:ourprint/screens/voucher_pages/voucher_redeem_vouchers_page.dart';
+import 'package:ourprint/screens/voucher_pages/voucher_redeemed_vouchers_page.dart';
 import 'dart:ui' as ui;
 import 'package:ourprint/screens/voucher_pages/voucher_scan_qr_page.dart';
 
 class VoucherMenuPage extends StatefulWidget {
+  static open(context) => Navigator.push(
+      context, MaterialPageRoute(builder: (context) => VoucherMenuPage()));
   @override
   VoucherMenuPageState createState() {
     return VoucherMenuPageState();
@@ -14,24 +20,42 @@ class VoucherMenuPageState extends State<VoucherMenuPage> {
 
   @override
   void initState() {
-    _balanceCoin = 100;
+    super.initState();
+    _getUserCoinBalance();
+  }
+
+  void _getUserCoinBalance() async {
+    final coinBalance =
+        await UserCoinDetailsProvider.instance.getUserCoinDetails();
+    setState(() {
+      _balanceCoin = coinBalance;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(top: 80, left: 40, right: 40),
+    return Scaffold(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(top: 40, left: 40, right: 40),
           child: Column(
             children: [
               Container(
                 child: _getCoinBalance(),
               ),
               Container(
+                width: double.infinity,
                 margin: EdgeInsets.only(top: 80),
-                child: ElevatedButton(
-                  onPressed: () {},
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      new MaterialPageRoute(
+                        builder: (BuildContext buildContext) =>
+                            VoucherScanQrPage(),
+                      ),
+                    );
+                  },
                   style: _buttonStyle,
                   child: Text(
                     "Earn More Coins",
@@ -43,8 +67,17 @@ class VoucherMenuPageState extends State<VoucherMenuPage> {
                 ),
               ),
               Container(
-                child: ElevatedButton(
-                  onPressed: () {},
+                width: double.infinity,
+                padding: EdgeInsets.only(top: 10),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      new MaterialPageRoute(
+                        builder: (BuildContext buildContext) =>
+                            RedeemVouchersPage(),
+                      ),
+                    );
+                  },
                   style: _buttonStyle,
                   child: Text(
                     "Redeem Vouchers",
@@ -56,8 +89,17 @@ class VoucherMenuPageState extends State<VoucherMenuPage> {
                 ),
               ),
               Container(
-                child: ElevatedButton(
-                  onPressed: () {},
+                width: double.infinity,
+                padding: EdgeInsets.only(top: 10),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      new MaterialPageRoute(
+                        builder: (BuildContext buildContext) =>
+                            RedeemedVouchersPage(),
+                      ),
+                    );
+                  },
                   style: _buttonStyle,
                   child: Text(
                     "Redeemed Vouchers",
@@ -71,71 +113,85 @@ class VoucherMenuPageState extends State<VoucherMenuPage> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          foregroundColor: Colors.black,
-          backgroundColor: Colors.green.withOpacity(0.6),
-          child: Icon(Icons.qr_code_2_outlined),
-          onPressed: () {
-            Navigator.of(context).push(
-              new MaterialPageRoute(
-                builder: (BuildContext buildContext) => VoucherScanQrPage(),
-              ),
-            );
-          },
+      ),
+      floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.black,
+        backgroundColor: Color(0xFF53905F),
+        child: Icon(
+          Icons.qr_code_2_outlined,
+          color: Colors.black,
         ),
+        onPressed: () {
+          Navigator.of(context).push(
+            new MaterialPageRoute(
+              builder: (BuildContext buildContext) => VoucherScanQrPage(),
+            ),
+          );
+        },
       ),
     );
   }
 
   Widget _getCoinBalance() {
-    return Container(
-      width: double.infinity,
-      height: 250,
-      decoration: new BoxDecoration(
-        color: Colors.green.withOpacity(0.2),
-        border: Border.all(color: Colors.black38, width: 1.0),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Center(
-            child: Container(
-              width: 100,
-              height: 100,
-              margin: EdgeInsets.only(top: 20, bottom: 15),
-              decoration: new BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: Material(
-                shape: CircleBorder(),
-                elevation: 10,
-                shadowColor: Colors.yellowAccent[400],
-                color: Colors.amber[800],
-                child: Icon(
-                  Icons.monetization_on,
-                  size: 100.0,
-                  color: Colors.yellowAccent[400],
+    return Card(
+      elevation: 10,
+      child: Container(
+        width: double.infinity,
+        height: 250,
+        decoration: new BoxDecoration(
+          color: Colors.green.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Center(
+              child: Container(
+                width: 100,
+                height: 100,
+                margin: EdgeInsets.only(top: 20, bottom: 15),
+                decoration: new BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.lightGreen,
+                    )),
+                child: Material(
+                  shape: CircleBorder(
+                    side: BorderSide(
+                      color: Colors.lightGreen,
+                      width: 6,
+                    ),
+                  ),
+                  elevation: 10,
+                  shadowColor: Color(0xFF53905F),
+                  color: Colors.green[700],
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Image.asset(
+                      Images.rupee,
+                      color: Colors.lightGreen,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          Text(
-            "$_balanceCoin",
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF53905F),
+            Text(
+              "$_balanceCoin",
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF53905F),
+              ),
             ),
-          ),
-          Text(
-            "Print Coins Balance",
-            style: TextStyle(
-              fontSize: 24,
-              color: Color(0xFF53905F),
+            Text(
+              "Print Coins Balance",
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0xFF53905F),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -145,11 +201,11 @@ class VoucherMenuPageState extends State<VoucherMenuPage> {
 
 ButtonStyle _buttonStyle = new ButtonStyle(
   foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-  backgroundColor: MaterialStateProperty.all<Color>(Colors.green.shade900),
+  backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF53905F)),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
     RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(18.0),
-      side: BorderSide(color: Colors.green.shade900),
+      side: BorderSide(color: Color(0xFF53905F)),
     ),
   ),
 );
